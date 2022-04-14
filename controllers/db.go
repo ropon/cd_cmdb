@@ -50,4 +50,3 @@ func GetDb(c *gin.Context) {
 	}
 	utils.GinOKRsp(c, res, "获取成功")
 }
-

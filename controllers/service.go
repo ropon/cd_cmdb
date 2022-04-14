@@ -26,7 +26,7 @@ func checkParamsId(c *gin.Context) (uint, bool) {
 //检查请求体
 func checkData(c *gin.Context, v interface{}) bool {
 	if err := c.Bind(v); err != nil {
-		utils.GinErrRsp(c, utils.ErrCodeParamInvalid, "参数有误")
+		utils.GinErrRsp(c, utils.ErrCodeParamInvalid, "参数有误:"+c.Errors.Last().Error())
 		return false
 	}
 	return true

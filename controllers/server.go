@@ -15,13 +15,13 @@ import (
 // @Success 200 {object} logics.ServiceRes "服务器列表返回结果"
 // @Router /cd_cmdb/api/v1/server [get]
 func GetServers(c *gin.Context) {
-	req := new(logics.ServiceReq)
+	req := new(logics.ServerReq)
 	if !checkData(c, req) {
 		return
 	}
 
 	ctx := utils.ExtractStdContext(nil, c.Request.Header)
-	resList, err := logics.GetServices(ctx, req)
+	resList, err := logics.GetServerS(ctx, req)
 	if err != nil {
 		utils.GinErrRsp(c, utils.ErrCodeGeneralFail, err.Error())
 		return

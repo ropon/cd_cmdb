@@ -63,7 +63,7 @@ func GinRsp(c *gin.Context, statusCode int, obj interface{}) {
 }
 
 func GinErrRsp(c *gin.Context, errCode interface{}, errMsg interface{}) {
-	GinRsp(c, http.StatusOK, gin.H{"status": StatusErr, "data": errCode, "description": errMsg})
+	GinRsp(c, http.StatusBadRequest, gin.H{"status": StatusErr, "data": errCode, "description": errMsg})
 }
 
 func GetRequestData(c *gin.Context) string {
