@@ -2,7 +2,7 @@ package logics
 
 import (
 	"context"
-	"github.com/ropon/cd_cmdb/client/awsyun"
+	"github.com/ropon/cd_cmdb/client/aliyun"
 )
 
 type ServerReq struct {
@@ -33,13 +33,13 @@ func GetServerS(ctx context.Context, req *ServerReq) (*ServerRes, error) {
 	//res.TotalCount = int(*cvmRes.Response.TotalCount)
 	//res.ServerList = cvmRes.Response.InstanceSet
 
-	ec2Res, err := awsyun.ListEc2(req.Region, req.PageSize, req.PageNum)
-	if err != nil {
-		return nil, err
-	}
-	res := new(ServerRes)
-	res.TotalCount = 0
-	res.ServerList = ec2Res.Reservations
+	//ec2Res, err := awsyun.ListEc2(req.Region, req.PageSize, req.PageNum)
+	//if err != nil {
+	//	return nil, err
+	//}
+	//res := new(ServerRes)
+	//res.TotalCount = 0
+	//res.ServerList = ec2Res.Reservations
 
 	//ecsRes, err := hwyun.ListEcs(req.Region, req.PageSize, req.PageNum)
 	//if err != nil {
@@ -57,5 +57,12 @@ func GetServerS(ctx context.Context, req *ServerReq) (*ServerRes, error) {
 	//res.TotalCount = int(*bssRes.TotalCount)
 	//res.ServerList = bssRes.FeeRecords
 
+	bssRes, err := aliyun.ListBssOverview(req.Region, "2022-03", 10, 1)
+	if err != nil {
+		return nil, err
+	}
+	res := new(ServerRes)
+	res.TotalCount = 0
+	res.ServerList = bssRes.Data
 	return res, nil
 }

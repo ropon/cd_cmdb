@@ -6,6 +6,6 @@ import (
 )
 
 func Hi(c *gin.Context) {
-	//utils.GinOKRsp(c, "hi ropon", "ok")
-	utils.GinErrRsp(c, utils.ErrCodeGeneralFail, "this is error test")
+	utils.GinOKRsp(c, "hi ropon", "ok")
+	//utils.GinErrRsp(c, utils.ErrCodeGeneralFail, "this is error test")
 }

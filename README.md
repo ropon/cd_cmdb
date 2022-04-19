@@ -1,24 +1,20 @@
-### 后端快速Api脚手架
+### cmdb资产管理系统
 
-#### 1、sdk
+#### 支持多云
 
-- web:gin
-- db:gorm
-- redis:go-redis
-- etcd:go.etcd.io
-- kafka:sarama
-- swagger
-- jaeger
+- 阿里云
+- 腾讯云
+- 华为云
+- AWS
 
-#### 2、usage
+#### 支持拉取资源
+- 主机
+- 数据库
+- 财务信息
 
-```shell
-bash new_project.sh testpro
-```
-
-#### 3、dev
+#### dev
 
 ```shell
-cd testpro
+#自动监听文件修改重载服务
 ./air
 ```

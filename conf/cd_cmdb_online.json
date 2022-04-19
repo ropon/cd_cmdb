@@ -25,7 +25,13 @@
     "cd_cmdb2": "127.0.0.1:2347",
     "JaegerAgentAddr": "192.168.1.210:6831",
     "aliKey": "",
-    "aliSecret": ""
+    "aliSecret": "",
+    "txKey": "",
+    "txSecret": "",
+    "awsKey": "",
+    "awsSecret": "",
+    "hwKey": "",
+    "hwSecret": ""
   },
   "ExternalInt64": {
     "Key2": 66
