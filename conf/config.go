@@ -210,6 +210,10 @@ func initEtcd() (err error) {
 	return nil
 }
 
+func GetCfgByExternalName(externalName string) string {
+	return Cfg.External[externalName]
+}
+
 // Init 初始化配置文件、Mysql、Redis、etcd等
 func Init() (err error) {
 	err = initConf()

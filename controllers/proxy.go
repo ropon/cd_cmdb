@@ -7,8 +7,8 @@ package controllers
 import (
 	"bytes"
 	"github.com/gin-gonic/gin"
-	"github.com/ropon/logger"
 	"github.com/ropon/cd_cmdb/conf"
+	"github.com/ropon/logger"
 	"io/ioutil"
 	"net/http"
 	"time"

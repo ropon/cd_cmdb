@@ -50,6 +50,8 @@ func setupRouter() *gin.Engine {
 
 		v1.GET("/db", controllers.GetDbs)
 		v1.GET("/db/:id", controllers.GetDb)
+
+		v1.GET("/test", controllers.Test)
 	}
 
 	engine.NoRoute(func(c *gin.Context) {

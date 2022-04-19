@@ -1,0 +1,40 @@
+{
+  "LogCfg": {
+    "Level": "debug",
+    "FilePath": "./log",
+    "FileName": "cd_cmdb.log"
+  },
+  "MysqlCfg": {
+    "cd_cmdb": {
+      "MysqlConn": "root:ropon.top@tcp(192.168.1.210:3306)/cd_cmdb?charset=utf8mb4&parseTime=true&loc=Local",
+      "MysqlConnectPoolSize": 40
+    }
+  },
+  "RedisSetting": {
+    "cd_cmdb": {
+      "RedisConn": "192.168.1.210:6379",
+      "RedisPasswd": "",
+      "RedisDb": 1
+    }
+  },
+  "External": {
+    "EtcdConn": "http://xxx:2379",
+    "KafkaAddr": "xxx:9092",
+    "Key1": "Val1",
+    "cd_cmdb1": "127.0.0.1:2346",
+    "cd_cmdb2": "127.0.0.1:2347",
+    "JaegerAgentAddr": "192.168.1.210:6831",
+    "aliKey": "",
+    "aliSecret": "",
+    "txKey": "",
+    "txSecret": "",
+    "awsKey": "",
+    "awsSecret": "",
+    "hwKey": "",
+    "hwSecret": ""
+  },
+  "ExternalInt64": {
+    "Key2": 66
+  },
+  "Listen": ":8867"
+}
