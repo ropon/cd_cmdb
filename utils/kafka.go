@@ -2,7 +2,7 @@ package utils
 
 import (
 	"fmt"
-	"github.com/Shopify/sarama"
+	"github.com/IBM/sarama"
 	"github.com/ropon/cd_cmdb/conf"
 )
 

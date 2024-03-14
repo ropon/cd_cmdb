@@ -19,5 +19,5 @@ config.conf
 
 log
 cd_cmdb
-conf/cd_cmdb.json
+conf/cd_cmdb_dev.json
 tmp

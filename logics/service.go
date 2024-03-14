@@ -21,8 +21,8 @@ type CUServiceReq struct {
 
 type ServiceReq struct {
 	models.Service
-	PageSize int64 `json:"page_size" form:"page_size"`
-	PageNum  int64 `json:"page_num" form:"page_num"`
+	PageSize int `json:"page_size" form:"page_size"`
+	PageNum  int `json:"page_num" form:"page_num"`
 }
 
 type ServiceRes struct {
@@ -48,7 +48,7 @@ func initService(req *CUServiceReq) *models.Service {
 	}
 }
 
-//创建服务返回服务详情
+// 创建服务返回服务详情
 func CreateService(req *CUServiceReq) (*models.Service, error) {
 	s := initService(req)
 	err := s.GetByName()
@@ -65,7 +65,7 @@ func CreateService(req *CUServiceReq) (*models.Service, error) {
 	return s, nil
 }
 
-//通过服务ID删除指定服务
+// 通过服务ID删除指定服务
 func DeleteService(id uint) error {
 	do := &DbObj{
 		Id:  id,
@@ -74,7 +74,7 @@ func DeleteService(id uint) error {
 	return do.delete()
 }
 
-//通过服务ID更新指定服务全部信息
+// 通过服务ID更新指定服务全部信息
 func UpdateService(id uint, req *CUServiceReq) (*models.Service, error) {
 	do := &DbObj{
 		Id:  id,
@@ -91,7 +91,7 @@ func UpdateService(id uint, req *CUServiceReq) (*models.Service, error) {
 	return s, do.update(s)
 }
 
-//通过服务ID更新指定服务部分信息
+// 通过服务ID更新指定服务部分信息
 func PatchUpdateService(id uint, req *ServiceReq) (interface{}, error) {
 	s := req.Service
 	do := &DbObj{
@@ -105,7 +105,7 @@ func PatchUpdateService(id uint, req *ServiceReq) (interface{}, error) {
 	return do.Obj, nil
 }
 
-//获取服务列表
+// 获取服务列表
 func GetServices(ctx context.Context, req *ServiceReq) (*ServiceRes, error) {
 	s := req.Service
 	sl, count, err := s.List(ctx, req.PageSize, req.PageNum)
@@ -122,7 +122,7 @@ func GetServices(ctx context.Context, req *ServiceReq) (*ServiceRes, error) {
 	return res, nil
 }
 
-//获取单个服务详情
+// 获取单个服务详情
 func GetService(id uint) (interface{}, error) {
 	do := &DbObj{
 		Id:  id,

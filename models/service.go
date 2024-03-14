@@ -74,7 +74,7 @@ func (s *Service) GetByName() (err error) {
 }
 
 // List 查(get /service)多个
-func (s *Service) List(ctx context.Context, PageSize, PageNum int64) (list ServiceList, count int64, err error) {
+func (s *Service) List(ctx context.Context, PageSize, PageNum int) (list ServiceList, count int64, err error) {
 	sp, _ := utils.ExtractChildSpan("db:get services", ctx)
 	defer sp.Finish()
 	list = make(ServiceList, 0)

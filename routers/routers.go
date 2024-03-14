@@ -2,6 +2,7 @@ package routers
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
@@ -10,8 +11,8 @@ import (
 	_ "github.com/ropon/cd_cmdb/docs"
 	"github.com/ropon/cd_cmdb/utils"
 	"github.com/ropon/logger"
+	swaggerFiles "github.com/swaggo/files"
 	gs "github.com/swaggo/gin-swagger"
-	"github.com/swaggo/gin-swagger/swaggerFiles"
 	"net/http"
 	"os"
 	"os/signal"
@@ -30,10 +31,10 @@ func setupRouter() *gin.Engine {
 	pprof.Register(engine)
 
 	engine.GET("/swagger/*any", gs.WrapHandler(swaggerFiles.Handler))
-	backend := engine.Group("/backend")
-	{
-		backend.Any(":server/*action", controllers.HttpProxy)
-	}
+	//backend := engine.Group("/backend")
+	//{
+	//	backend.Any(":server/*action", controllers.HttpProxy)
+	//}
 	v1 := engine.Group("/cd_cmdb/api/v1")
 	{
 		v1.GET("/hi", controllers.Hi)
@@ -66,7 +67,7 @@ func Run(addr string) {
 		Handler: setupRouter(),
 	}
 	go func() {
-		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+		if err := srv.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			logger.Error("listen error: %s\n", err.Error())
 		}
 	}()

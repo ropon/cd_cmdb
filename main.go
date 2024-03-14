@@ -26,5 +26,7 @@ func main() {
 		return
 	}
 
+	//go logics.TestSendMail()
+
 	routers.Run(conf.Cfg.Listen)
 }
