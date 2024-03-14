@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/Shopify/sarama"
+	"github.com/IBM/sarama"
 	"github.com/go-redis/redis"
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/jinzhu/gorm"
 	"github.com/ropon/logger"
 	clientv3 "go.etcd.io/etcd/client/v3"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -147,22 +147,22 @@ func etcdKey(service, env string) string {
 
 func initMysql() (err error) {
 	mysqlConn := Cfg.MysqlCfg[SERVERNAME]
-	MysqlDb, err = initGormDbPool(&mysqlConn, true)
+	MysqlDb, err = initGormDbPool(&mysqlConn)
 	return
 }
 
-func initGormDbPool(cfg *MysqlCfg, setLog bool) (*gorm.DB, error) {
-	db, err := gorm.Open("mysql", cfg.MysqlConn)
+func initGormDbPool(cfg *MysqlCfg) (*gorm.DB, error) {
+	db, err := gorm.Open(mysql.Open(cfg.MysqlConn), &gorm.Config{})
 	if err != nil {
 		return nil, err
 	}
-	db.DB().SetMaxOpenConns(cfg.MysqlConnectPoolSize)
-	db.DB().SetMaxIdleConns(cfg.MysqlConnectPoolSize / 2)
-	if setLog {
-		db.LogMode(true)
-		db.SetLogger(logger.Log)
+	sqlDB, err := db.DB()
+	if err != nil {
+		return nil, err
 	}
-	db.SingularTable(true)
+	sqlDB.SetMaxOpenConns(cfg.MysqlConnectPoolSize)
+	sqlDB.SetMaxIdleConns(cfg.MysqlConnectPoolSize / 2)
+	sqlDB.SetConnMaxLifetime(time.Hour)
 	return db, nil
 }
 

@@ -19,7 +19,7 @@ const (
 	ErrCodeGeneralFail  = 2002
 )
 
-func GetOffsetAndLimit(PageSize, PageNum int64) (int64, int64) {
+func GetOffsetAndLimit(PageSize, PageNum int) (int, int) {
 	if PageSize < 1 {
 		PageSize = 10
 	}
