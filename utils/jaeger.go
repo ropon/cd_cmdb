@@ -91,7 +91,7 @@ func ExtractChildSpan(name string, carrier interface{}) (opentracing.Span, error
 	return StartChildSpan(name, ctx), nil
 }
 
-//提取
+// 提取
 func ExtractContext(carrier interface{}) (opentracing.SpanContext, error) {
 	switch t := carrier.(type) {
 	case http.Header:
@@ -116,7 +116,7 @@ func StartChildSpan(name string, parentCtx opentracing.SpanContext) opentracing.
 	return tracer.StartSpan(name, ext.RPCServerOption(parentCtx))
 }
 
-//注入
+// 注入
 func Inject(spCtx opentracing.SpanContext, carrier interface{}) {
 	switch t := carrier.(type) {
 	case http.Header:
@@ -143,7 +143,7 @@ func spanContextToJaegerContext(spanContext opentracing.SpanContext) jaeger.Span
 	}
 }
 
-//将http header包装到ctx中
+// 将http header包装到ctx中
 func ExtractStdContext(parent context.Context, carrier interface{}) context.Context {
 	var parentCtx context.Context
 	if parent != nil {

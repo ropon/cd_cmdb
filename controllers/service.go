@@ -12,7 +12,7 @@ func initExtraKeys(c *gin.Context) (string, string) {
 	return c.Request.Header.Get("user_email"), c.Request.Header.Get("ops_admin")
 }
 
-//检查params id
+// 检查params id
 func checkParamsId(c *gin.Context) (uint, bool) {
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
@@ -23,7 +23,7 @@ func checkParamsId(c *gin.Context) (uint, bool) {
 	return uint(id), true
 }
 
-//检查请求体
+// 检查请求体
 func checkData(c *gin.Context, v interface{}) bool {
 	if err := c.ShouldBind(v); err != nil {
 		utils.GinErrRsp(c, utils.ErrCodeParamInvalid, "参数有误:"+err.Error())
